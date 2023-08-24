@@ -1,13 +1,14 @@
 from django.db import models
 from django.contrib import admin
 from django.contrib.auth import get_user_model
+from .validators import validate_question_mark
 
 User = get_user_model()
 
 # Create your models here.
 
 class Advertisement(models.Model):
-    title = models.CharField("Заголовок", max_length=128)
+    title = models.CharField("Заголовок", max_length=128, validators=[validate_question_mark])
     description = models.TextField("Описание")
     price = models.DecimalField("Цена", max_digits=10, decimal_places=2)
     auction = models.BooleanField("Торг", help_text="Уместен торг или нет")
